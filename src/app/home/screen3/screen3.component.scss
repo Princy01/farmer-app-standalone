@@ -1,0 +1,17 @@
+.center-button {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      ion-content{
+        --background: black;
+      }
+
+      ion-toolbar{
+        --background: black;
+      }
+      ion-item {
+        --background: black;
+        --color: white;
+        --border-color: rgb(95, 69, 186);
+      }

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="--color: white;">Filtered Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+[scrollEvents]="true" (ionScroll)="loadScreen3($event)">
+  <ion-grid>
+    <ion-row>
+      <!-- Filter Options -->
+      <ion-col size="3">
+        <ion-list>
+          <ion-item
+            *ngFor="let filter of filterOptions"
+            (click)="applyFilter(filter.value)"
+            [class.selected]="filter.value === selectedFilter"
+          >
+            {{ filter.name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <!-- Filtered Orders -->
+      <ion-col size="9">
+        <ion-list>
+          <ion-item *ngFor="let order of filteredOrders">
+            <ion-label>
+              <h2>{{ order.items }}</h2>
+              <p><strong>Total:</strong> {{ order.total }} R</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ng-container *ngIf="showScreen3">
+    <app-screen3></app-screen3>
+  </ng-container>
+</ion-content>

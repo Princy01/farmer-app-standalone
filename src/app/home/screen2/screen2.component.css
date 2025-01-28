@@ -1,0 +1,1 @@
+ion-toolbar{--background: black}ion-content{--background: black}ion-item{--background: black;--color: white;--border-color: rgb(95, 69, 186)}ion-item.selected{background-color:var(--ion-color-primary);color:#fff}ion-list{--background:black}

@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="openProfile()">
+        <ion-label>Profile</ion-label>
+      </ion-button>
+
+      <ion-button (click)="openNotifications()">
+        <ion-badge color="danger" *ngIf="notifications > 0">{{ notifications }}</ion-badge>
+        <ion-icon name="notifications-circle-sharp" slot="icon-only"></ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title style="--color: rgb(95, 69, 186);">Go4u</ion-title>
+
+      <ion-buttons slot="end">
+      <ion-button (click)="openMessages()">
+        <ion-badge color="danger" *ngIf="messages > 0">{{ messages }}</ion-badge>
+        <ion-icon name="chatbubbles-sharp" slot="icon-only"></ion-icon>
+
+      </ion-button>
+
+      <ion-button (click)="openLogoPage()">
+        <ion-icon name="logo-android"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScroll)="loadScreen2($event)">
+  <ion-searchbar placeholder="Search items..." (ionInput)="searchItems($event)"></ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-label>
+        <h2>{{ item.name }}</h2>
+        <p>Total Quantity: {{ item.qty }} kg</p>
+        <p>Orders placed: {{ item.orders }} kg</p>
+      </ion-label>
+      <ion-button fill="outline" (click)="viewDetails(item)">Details</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div class="center-button">
+    <ion-button color="medium" (click)="loadMore()">Load More</ion-button>
+  </div>
+
+
+  <ng-container *ngIf="showScreen2">
+    <app-screen2></app-screen2>
+  </ng-container>
+
+  <div class="fixed-button">
+    <ion-button color="primary" shape="round">
+      <!-- (click)="navigateToNextPage()" -->
+      <ion-icon name="arrow-forward"></ion-icon>
+    </ion-button>
+  </div>
+
+</ion-content>
+
+
+<style>
+  .center-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+</style>
