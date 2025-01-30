@@ -1,41 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title style="--color: white;">Filtered Orders</ion-title>
+    <ion-title style="color: rgb(245, 240, 230); font-size: 14px ;">ORDERS</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content
-[scrollEvents]="true" (ionScroll)="loadScreen3($event)">
+<ion-content>
   <ion-grid>
-    <ion-row>
-      <!-- Filter Options -->
-      <ion-col size="3">
-        <ion-list>
-          <ion-item
-            *ngFor="let filter of filterOptions"
-            (click)="applyFilter(filter.value)"
-            [class.selected]="filter.value === selectedFilter"
-          >
-            {{ filter.name }}
-          </ion-item>
-        </ion-list>
-      </ion-col>
+    <!-- Filter Options -->
+    <div class="filter-dropdown">
+      <ion-select placeholder="Select Filter" (ionChange)="applyFilter($event.detail.value)">
+        <ion-select-option *ngFor="let filter of filterOptions" [value]="filter.value">
+          {{ filter.name }}
+        </ion-select-option>
+      </ion-select>
+    </div>
 
-      <!-- Filtered Orders -->
-      <ion-col size="9">
-        <ion-list>
-          <ion-item *ngFor="let order of filteredOrders">
-            <ion-label>
-              <h2>{{ order.items }}</h2>
-              <p><strong>Total:</strong> {{ order.total }} R</p>
-            </ion-label>
-          </ion-item>
-        </ion-list>
+    <!-- Filtered Orders -->
+    <ion-row class="card-layout">
+      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let order of filteredOrders">
+        <div class="order-card">
+          <h3 [innerHTML]="order.items"></h3>
+          <p><strong>Total: Rs. {{ order.total }}</strong></p>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ng-container *ngIf="showScreen3">
-    <app-screen3></app-screen3>
-  </ng-container>
 </ion-content>

@@ -1,25 +1,60 @@
-ion-content{
-  --background: black;
-}
+// ion-content{
+//   --background: black;
+// }
 
 ion-toolbar{
-  --background: black;
+  --background: rgb(136, 172, 140);
+
+}
+
+.custom-badge {
+  --background: rgb(255, 94, 77);
+  --color: rgb(75, 100, 66);  /* Text color inside the badge */
+  // --font-weight: bold;
+}
+
+.loadMore {
+  font-family: 'Georgia', 'Times', serif;
+  --background: rgb(136, 172, 140);
+  --color: white;
+  --border-radius: 8px;  /* round the button corners */
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 100px;
 }
 
 
 ion-item {
-  --background: black;
-  --color: white;
-  --border-color: rgb(95, 69, 186);
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  padding:5px;
+  margin: 10px auto;
+  max-width: 320px;
+  // background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+h2{
+  font-family: 'Arial, sans-serif';
+  font-size: 18px;
+  // font-weight: bold;
+}
+
+p {
+  font-family: 'Georgia', 'Times', serif;
 }
 
 ion-button {
-  --border-color: rgb(95, 69, 186);
-  --color: rgb(95, 69, 186);
+  // --border-color: rgb(95, 69, 186);
+  --color: rgb(245, 240, 230);
 }
 
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 ion-searchbar {
-  --background: rgba(211, 211, 211, 0.849);
+  font-family: 'Arial, sans-serif';
+  width: 345px;
  }
 
 .fixed-button {

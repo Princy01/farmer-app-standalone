@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sale Summary</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <!-- Summary Header -->
+    <ion-row>
+      <ion-col size="12">
+        <h2>Sale Summary</h2>
+      </ion-col>
+    </ion-row>
+
+    <!-- Heatmap -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-grid class="heatmap">
+          <ion-row>
+            <ion-col size="4" *ngFor="let order of ordersSummary">
+              <ion-card (click)="viewOrderDetails(order)">
+                <ion-card-content>
+                  <p>Order #: {{ order.orderNumber }}</p>
+                  <p>Qty Sold: {{ order.qtySold }}</p>
+                  <p>Amount: ₹{{ order.amount }}</p>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+
+    <!-- Details Section -->
+    <ion-row *ngIf="selectedDetails">
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Order Details</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Order #: {{ selectedDetails.orderNumber }}</p>
+            <p>Total Quantity: {{ selectedDetails.qtySold }}</p>
+            <p>Total Amount: ₹{{ selectedDetails.amount }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -10,4 +10,8 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'screen4',
+    loadComponent: () => import('./screen4/screen4.component').then(m => m.Screen4Component),
+  },
 ];

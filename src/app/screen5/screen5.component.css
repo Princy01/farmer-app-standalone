@@ -1,0 +1,1 @@
+.heatmap .ion-card{background:linear-gradient(to bottom right, #e0ffe0, #b2f0b2);text-align:center;cursor:pointer;transition:transform .2s}.heatmap .ion-card:hover{transform:scale(1.1);box-shadow:0px 4px 12px rgba(0,0,0,.2)}.heatmap .ion-card-content{font-size:14px;color:#333}ion-card{margin-bottom:15px}

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicModule, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import {addIcons} from 'ionicons';
-import { chatbubblesSharp, notificationsCircleSharp,logoAndroid } from 'ionicons/icons';
+import { chatbubblesSharp, notificationsCircleSharp,logoAndroid, personCircleSharp, arrowForwardCircleSharp, chevronForwardOutline } from 'ionicons/icons';
 import { Screen2Component } from './screen2/screen2.component';
 import { Screen3Component } from './screen3/screen3.component';
 
@@ -26,10 +26,11 @@ export class HomePage {
 
 
   showScreen2 = false;
+  showScreen3 = false;
 
 
   constructor(private navCtrl: NavController) {
-    addIcons({chatbubblesSharp, notificationsCircleSharp, logoAndroid});
+    addIcons({chatbubblesSharp, notificationsCircleSharp, logoAndroid, personCircleSharp, arrowForwardCircleSharp, chevronForwardOutline});
   }
 
   searchItems(event: any) {
@@ -73,5 +74,17 @@ export class HomePage {
       console.log(this.showScreen2,event)
       // event.target.complete();
     }, 1000);
+  }
+
+  loadScreen3(event: any) {
+    setTimeout(() => {
+      this.showScreen3 = true;
+      console.log(this.showScreen3,event)
+      // event.target.complete();
+    }, 1000);
+  }
+
+  navigateToScreen4() {
+    this.navCtrl.navigateForward('/screen4');
   }
 }

@@ -1,8 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="color: rgb(245, 240, 230); font-size: 14px ;">FOR SALE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-grid>
   <ion-row>
     <ion-col>
-      <h2>For Sale</h2>
-
       <ion-item>
         <ion-label position="stacked">Item</ion-label>
         <ion-input placeholder="Search items..." [(ngModel)]="order.item"></ion-input>
@@ -48,10 +52,12 @@
 
       <!-- Create Orders Button -->
       <div class="center-button">
-        <ion-button color="primary" expand="block" (click)="createOrder()">
+        <ion-button class="custom-button" (click)="createOrder()">
           Create Order
         </ion-button>
       </div>
+
+
     </ion-col>
   </ion-row>
 </ion-grid>
