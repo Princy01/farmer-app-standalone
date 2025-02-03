@@ -1,0 +1,7 @@
+{
+  "name": "farmer-app-s",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
