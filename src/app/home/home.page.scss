@@ -1,27 +1,69 @@
-#container {
-  text-align: center;
+// ion-content{
+//   --background: black;
+// }
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+ion-toolbar{
+  --background: rgb(136, 172, 140);
+
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.custom-badge {
+  --background: rgb(255, 94, 77);
+  --color: rgb(75, 100, 66);  /* Text color inside the badge */
+  // --font-weight: bold;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.loadMore {
+  font-family: 'Georgia', 'Times', serif;
+  --background: rgb(136, 172, 140);
+  --color: white;
+  --border-radius: 8px;  /* round the button corners */
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 100px;
 }
 
-#container a {
-  text-decoration: none;
+ion-item {
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  padding:5px;
+  margin: 10px auto;
+  max-width: 320px;
+  // background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+h2{
+  font-family: 'Arial, sans-serif';
+  font-size: 18px;
+  // font-weight: bold;
+}
+
+p {
+  font-family: 'Georgia', 'Times', serif;
+}
+
+ion-button {
+  // --border-color: rgb(95, 69, 186);
+  --color: rgb(245, 240, 230);
+}
+
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+ion-searchbar {
+  font-family: 'Arial, sans-serif';
+  width: 345px;
+ }
+
+.fixed-button {
+  position: fixed;
+  bottom: 20px; /* Distance from the bottom */
+  right: 20px; /* Distance from the right */
+  z-index: 1000; /* Ensures it's above other content */
+  transition: transform 0.3s ease-in-out;
+}
+
+.fixed-button:hover {
+  transform: rotate(360deg);
 }

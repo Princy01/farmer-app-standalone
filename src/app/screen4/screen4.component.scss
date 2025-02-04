@@ -1,0 +1,34 @@
+ion-toolbar{
+        --background: rgb(136, 172, 140);
+
+      }
+
+      .custom-badge {
+        --background: rgb(255, 94, 77);
+        --color: rgb(75, 100, 66);  /* Text color inside the badge */
+        // --font-weight: bold;
+      }
+
+      ion-button {
+        --color: rgb(245, 240, 230);
+      }
+
+.filters {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+      }
+
+      ion-item {
+        width: 100%;
+      }
+
+      ion-card {
+        text-align: center;
+        transition: 0.3s;
+      }
+
+      ion-card.selected {
+        background: #007bff;
+        color: white;
+      }
