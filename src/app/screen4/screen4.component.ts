@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
-import { chatbubblesSharp, notificationsCircleSharp, logoAndroid, personCircleSharp, arrowForwardCircleSharp, chevronForwardOutline } from 'ionicons/icons';
+import { chatbubblesSharp, notificationsCircleSharp, logoAndroid, personCircleSharp, arrowBackCircleSharp } from 'ionicons/icons';
 import { HeatmapComponent } from '../heatmap/heatmap.component';
 import { TrendsComponent } from '../trends/trends.component';
 
@@ -43,7 +43,7 @@ export class Screen4Component implements AfterViewInit {
 
 
   constructor(private router: Router, private navCtrl: NavController) {
-    addIcons({ chatbubblesSharp, notificationsCircleSharp, logoAndroid, personCircleSharp, arrowForwardCircleSharp, chevronForwardOutline });
+    addIcons({ chatbubblesSharp, notificationsCircleSharp, logoAndroid, personCircleSharp, arrowBackCircleSharp });
   }
 
 
@@ -96,6 +96,10 @@ export class Screen4Component implements AfterViewInit {
       console.log(this.showTrends,event)
       // event.target.complete();
     }, 1000);
+  }
+
+  navigateToHome() {
+    this.navCtrl.navigateBack('/home');
   }
 
 }

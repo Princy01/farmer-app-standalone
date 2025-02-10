@@ -3,11 +3,16 @@ ion-toolbar{
 
       }
 
-      .custom-badge {
-        --background: rgb(255, 94, 77);
-        --color: rgb(75, 100, 66);  /* Text color inside the badge */
+h2{
+    background: radial-gradient(circle, #ffffff 0%, #eef2f3 100%);
+    padding: 3%;
+  }
+
+.custom-badge {
+    --background: rgb(150, 235, 85);
+    --color: white;  /* Text color inside the badge */
         // --font-weight: bold;
-      }
+    }
 
       ion-button {
         --color: rgb(245, 240, 230);
@@ -24,6 +29,7 @@ ion-toolbar{
       }
 
       ion-card {
+        background: radial-gradient(circle, #ffffff 0%, #eef2f3 100%);
         text-align: center;
         transition: 0.3s;
       }
@@ -31,4 +37,26 @@ ion-toolbar{
       ion-card.selected {
         background: #007bff;
         color: white;
+      }
+
+
+      // ion-fab {
+      //   margin: 15px;
+      // }
+
+      // ion-fab-button {
+      //   --background: rgb(153, 101, 58);
+      //   // --color: white;
+      //   font-size: 20px;
+      // }
+      .fixed-button {
+        position: fixed;
+        bottom: 20px; /* Distance from the bottom */
+        left: 20px; /* Distance from the left */
+        z-index: 1000; /* Ensures it's above other content */
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .fixed-button:hover {
+        transform: rotate(360deg);
       }

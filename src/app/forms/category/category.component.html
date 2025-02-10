@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Category Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="category" (ngSubmit)="submitForm()">
+    <ion-list>
+      <ion-item [class.invalid]="isFieldInvalid('category_name')">
+        <ion-label position="floating">Category Name</ion-label>
+        <ion-input formControlName="category_name"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('category_name')">Category Name is required (max 255 characters).</p>
+
+      <ion-item [class.invalid]="isFieldInvalid('super_cat_id')">
+        <ion-label position="floating">Super Category ID</ion-label>
+        <ion-input type="number" formControlName="super_cat_id"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('super_cat_id')">Enter a valid number.</p>
+
+      <!-- <ion-item>
+        <ion-label>Created At</ion-label>
+        <ion-datetime formControlName="created_at" readonly></ion-datetime>
+      </ion-item> -->
+
+      <!-- <ion-item>
+        <ion-label>Updated At</ion-label>
+        <ion-datetime formControlName="updated_at" readonly></ion-datetime>
+      </ion-item> -->
+
+      <ion-item [class.invalid]="isFieldInvalid('col1')">
+        <ion-label position="floating">Column 1</ion-label>
+        <ion-input formControlName="col1"></ion-input>
+      </ion-item>
+
+      <ion-item [class.invalid]="isFieldInvalid('col2')">
+        <ion-label position="floating">Column 2</ion-label>
+        <ion-input formControlName="col2"></ion-input>
+      </ion-item>
+
+      <ion-item [class.invalid]="isFieldInvalid('remarks')">
+        <ion-label position="floating">Remarks</ion-label>
+        <ion-textarea formControlName="remarks"></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="full" type="submit" [disabled]="category.invalid">
+        Submit
+      </ion-button>
+    </ion-list>
+  </form>
+</ion-content>
+
+<style>
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-left: 16px;
+  }
+
+  .invalid {
+    border: 1px solid red;
+    border-radius: 5px;
+  }
+</style>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Violation Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="violation" (ngSubmit)="submitForm()">
+    <ion-list>
+      <ion-item [class.invalid]="isFieldInvalid('violation_name')">
+        <ion-label position="floating">Violation Name</ion-label>
+        <ion-input formControlName="violation_name"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('violation_name')">Violation Name is required (max 255 characters).</p>
+
+      <ion-item [class.invalid]="isFieldInvalid('level_of_serious')">
+        <ion-label position="floating">Level of Seriousness</ion-label>
+        <ion-input formControlName="level_of_serious"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('level_of_serious')">Level of Seriousness is required (max 255 characters).</p>
+
+      <ion-item [class.invalid]="isFieldInvalid('status')">
+        <ion-label>Status</ion-label>
+        <ion-select formControlName="status">
+          <ion-select-option [value]="1">Active</ion-select-option>
+          <ion-select-option [value]="0">Inactive</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('status')">Status is required.</p>
+    </ion-list>
+
+    <ion-button expand="full" type="submit" [disabled]="violation.invalid">
+      Submit
+    </ion-button>
+
+  </form>
+</ion-content>
+
+<style>
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-left: 16px;
+  }
+
+  .invalid {
+    border: 1px solid red;
+    border-radius: 5px;
+  }
+</style>

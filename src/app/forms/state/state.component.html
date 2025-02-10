@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Master State Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="state" (ngSubmit)="submitForm()">
+    <ion-list>
+
+      <ion-item [class.invalid]="isFieldInvalid('state')">
+        <ion-label position="floating">State Name</ion-label>
+        <ion-input formControlName="state"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('state')">State Name is required (max 50 characters).</p>
+
+    </ion-list>
+
+    <ion-button expand="full" type="submit" [disabled]="state.invalid">
+      Submit
+    </ion-button>
+
+  </form>
+</ion-content>

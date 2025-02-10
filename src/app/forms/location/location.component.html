@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Location</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="location" (ngSubmit)="submitForm()">
+    <ion-list>
+      <ion-item [class.invalid]="isFieldInvalid('location')">
+        <ion-label position="floating">Location Name</ion-label>
+        <ion-input formControlName="location"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('location')">Location is required (max 50 characters).</p>
+    </ion-list>
+
+    <ion-button expand="full" type="submit" [disabled]="location.invalid">
+      Submit
+    </ion-button>
+  </form>
+</ion-content>
+
+<style>
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-left: 16px;
+  }
+
+  .invalid {
+    border: 1px solid red;
+    border-radius: 5px;
+  }
+</style>

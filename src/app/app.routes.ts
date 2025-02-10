@@ -14,4 +14,43 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'admin',
+    loadComponent: () => import('./admin/admin.page').then( m => m.AdminPage),
+    children:[
+      {
+       path: 'driver',
+        loadComponent: () => import('./forms/driver/driver.component').then( m => m.DriverComponent),
+      },
+      {
+        path: 'states',
+         loadComponent: () => import('./forms/state/state.component').then( m => m.StateComponent),
+       },
+       {
+        path: 'category',
+         loadComponent: () => import('./forms/category/category.component').then( m => m.CategoryComponent),
+       },
+       {
+        path: 'location',
+         loadComponent: () => import('./forms/location/location.component').then( m => m.LocationComponent),
+       },
+       {
+        path: 'vehicle',
+         loadComponent: () => import('./forms/vehicle/vehicle.component').then( m => m.VehicleComponent),
+       },
+       {
+        path: 'mandi',
+         loadComponent: () => import('./forms/mandi/mandi.component').then( m => m.MandiComponent),
+       },
+       {
+        path: 'product',
+         loadComponent: () => import('./forms/product/product.component').then( m => m.ProductComponent),
+       },
+       {
+        path: 'violation',
+         loadComponent: () => import('./forms/violation/violation.component').then( m => m.ViolationComponent),
+       },
+    ]
+
+  },
 ];

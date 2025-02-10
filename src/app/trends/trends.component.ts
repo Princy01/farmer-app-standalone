@@ -24,7 +24,7 @@ export interface TrendsOptions {
   template: `
     <div style="display: flex; align-items: center;">
       <button (click)="navigate('left')">&#8592;</button>
-      <div style="background-color: rgb(136, 172, 140); padding: 10px; border: 2px solid black;">
+      <div style="background-color: rgb(0, 0, 0); padding: 10px; border: 2px solid black;">
         <h3 style="color: white;">Trends</h3>
         <apx-chart
           [series]="chartOptions.series"

@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Vehicle Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="vehicle" (ngSubmit)="submitForm()">
+    <ion-list>
+      <ion-item [class.invalid]="isFieldInvalid('vehicle_name')">
+        <ion-label position="floating">Vehicle Name</ion-label>
+        <ion-input formControlName="vehicle_name"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('vehicle_name')">Vehicle Name is required (max 255 characters).</p>
+
+      <ion-item [class.invalid]="isFieldInvalid('vehicle_manufacture_year')">
+        <ion-label position="floating">Manufacture Year</ion-label>
+        <ion-input type="number" formControlName="vehicle_manufacture_year"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('vehicle_manufacture_year')">Enter a valid year (4 digits).</p>
+
+      <ion-item [class.invalid]="isFieldInvalid('vehicle_warranty')">
+        <ion-label position="floating">Warranty</ion-label>
+        <ion-input formControlName="vehicle_warranty"></ion-input>
+      </ion-item>
+
+      <ion-item [class.invalid]="isFieldInvalid('vehicle_make')">
+        <ion-label>Vehicle Make</ion-label>
+        <ion-select formControlName="vehicle_make">
+          <ion-select-option *ngFor="let make of makes" [value]="make.id">{{ make.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('vehicle_make')">Make is required.</p>
+
+      <ion-item [class.invalid]="isFieldInvalid('vehicle_model')">
+        <ion-label>Vehicle Model</ion-label>
+        <ion-select formControlName="vehicle_model">
+          <ion-select-option *ngFor="let model of models" [value]="model.id">{{ model.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('vehicle_model')">Model is required.</p>
+
+      <ion-item [class.invalid]="isFieldInvalid('vehicle_registration_no')">
+        <ion-label position="floating">Registration No</ion-label>
+        <ion-input formControlName="vehicle_registration_no"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('vehicle_registration_no')">Registration No is required.</p>
+
+      <ion-item [class.invalid]="isFieldInvalid('vehicle_engine_type')">
+        <ion-label>Engine Type</ion-label>
+        <ion-select formControlName="vehicle_engine_type">
+          <ion-select-option *ngFor="let engine of engines" [value]="engine.id">{{ engine.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('vehicle_engine_type')">Engine type is required.</p>
+
+      <ion-item [class.invalid]="isFieldInvalid('vehicle_purchase_date')">
+        <ion-label position="floating">Purchase Date</ion-label>
+        <ion-datetime formControlName="vehicle_purchase_date"></ion-datetime>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('vehicle_purchase_date')">Purchase date is required.</p>
+
+      <ion-item [class.invalid]="isFieldInvalid('vehicle_color')">
+        <ion-label position="floating">Color</ion-label>
+        <ion-input formControlName="vehicle_color"></ion-input>
+      </ion-item>
+
+      <ion-item [class.invalid]="isFieldInvalid('vehicle_insurance_id')">
+        <ion-label position="floating">Insurance ID</ion-label>
+        <ion-input type="number" formControlName="vehicle_insurance_id"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('vehicle_insurance_id')">Insurance ID is required.</p>
+    </ion-list>
+
+    <ion-button expand="full" type="submit" [disabled]="vehicle.invalid">
+      Submit
+    </ion-button>
+  </form>
+</ion-content>
+
+<style>
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-left: 16px;
+  }
+
+  .invalid {
+    border: 1px solid red;
+    border-radius: 5px;
+  }
+</style>

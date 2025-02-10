@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Product Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="product" (ngSubmit)="submitForm()">
+    <ion-list>
+
+      <ion-item [class.invalid]="isFieldInvalid('category_id')">
+        <ion-label position="floating">Category ID</ion-label>
+        <ion-input formControlName="category_id" type="number"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('category_id')">Category ID is required.</p>
+
+      <ion-item [class.invalid]="isFieldInvalid('product_name')">
+        <ion-label position="floating">Product Name</ion-label>
+        <ion-input formControlName="product_name"></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('product_name')">Product Name is required (max 100 characters).</p>
+
+      <ion-item [class.invalid]="isFieldInvalid('status')">
+        <ion-label>Product Status</ion-label>
+        <ion-select formControlName="status">
+          <ion-select-option [value]="1">Active</ion-select-option>
+          <ion-select-option [value]="0">Inactive</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <p class="error" *ngIf="isFieldInvalid('status')">Status is required.</p>
+    </ion-list>
+
+    <ion-button expand="full" type="submit" [disabled]="product.invalid">
+      Submit
+    </ion-button>
+  </form>
+</ion-content>
+
+<style>
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-left: 16px;
+  }
+
+  .invalid {
+    border: 1px solid red;
+    border-radius: 5px;
+  }
+</style>

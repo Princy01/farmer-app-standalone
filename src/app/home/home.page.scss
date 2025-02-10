@@ -1,15 +1,10 @@
-// ion-content{
-//   --background: black;
-// }
-
 ion-toolbar{
   --background: rgb(136, 172, 140);
-
 }
 
 .custom-badge {
-  --background: rgb(255, 94, 77);
-  --color: rgb(75, 100, 66);  /* Text color inside the badge */
+  --background: rgb(150, 235, 85);
+  --color: white;  /* Text color inside the badge */
   // --font-weight: bold;
 }
 
@@ -25,12 +20,19 @@ ion-toolbar{
 ion-item {
   border: 1px solid #ccc;
   border-radius: 7px;
-  padding:5px;
+  padding: 5px;
   margin: 10px auto;
   max-width: 320px;
-  // background-color: #f9f9f9;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* 3D Hover Effect */
+ion-item:hover {
+  transform: perspective(1000px) rotateX(10deg) rotateY(-10deg) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 h2{
   font-family: 'Arial, sans-serif';
   font-size: 18px;
