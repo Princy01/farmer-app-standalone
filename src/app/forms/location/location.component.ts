@@ -1,6 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LocationService } from '../../services/location.service';
@@ -15,7 +15,7 @@ import { LocationService } from '../../services/location.service';
 export class LocationComponent {
   location: FormGroup;
 
-  constructor(private fb: FormBuilder, private el: ElementRef, private locationService: LocationService) {
+  constructor(private fb: FormBuilder, private el: ElementRef, private locationService: LocationService, private navCtrl: NavController) {
     this.location = this.fb.group({
       location: ['', [Validators.required, Validators.maxLength(50)]]
     });
@@ -34,6 +34,10 @@ export class LocationComponent {
           next: data => {
             console.log('Data:', data);
             this.location.reset();
+
+            this.navCtrl.navigateBack('/admin/mandi', {
+              queryParams: { mandi_city: data.mandi_city }
+            });
           },
           error: error => {
             console.error('Error:', error);

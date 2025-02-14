@@ -1,5 +1,5 @@
 {
-  "name": "farmer-app-s",
+  "name": "farmer-app-standalone",
   "integrations": {
     "capacitor": {}
   },

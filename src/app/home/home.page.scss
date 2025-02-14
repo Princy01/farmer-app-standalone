@@ -69,3 +69,10 @@ ion-searchbar {
 .fixed-button:hover {
   transform: rotate(360deg);
 }
+
+.center-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

@@ -1,9 +1,12 @@
 import { Component, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { addIcons } from 'ionicons';
+import { listOutline } from 'ionicons/icons';
 import { MandiService } from '../../services/mandi.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mandi',
@@ -15,7 +18,10 @@ import { MandiService } from '../../services/mandi.service';
 export class MandiComponent {
   mandi: FormGroup;
 
-  constructor(private fb: FormBuilder, private el: ElementRef, private mandiService: MandiService) {
+  constructor(private fb: FormBuilder, private el: ElementRef, private mandiService: MandiService, private navCtrl: NavController, private route: ActivatedRoute) {
+
+    addIcons({ listOutline });
+
     this.mandi = this.fb.group({
       mandi_location: ['', [Validators.required, Validators.maxLength(255)]],
       mandi_number: ['', [Validators.required, Validators.maxLength(50)]],
@@ -27,7 +33,13 @@ export class MandiComponent {
       mandi_state: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       remarks: ['', Validators.required],
     });
-  }
+
+  this.route.queryParams.subscribe(params => {
+    if (params['mandi_city']) {
+      this.mandi.patchValue({ category_id: params['mandi_city'] });
+    }
+  });
+}
 
   isFieldInvalid(field: string): boolean {
     const control = this.mandi.get(field);
@@ -52,5 +64,13 @@ export class MandiComponent {
       const firstInvalid = this.el.nativeElement.querySelector('.invalid');
       if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  navigateToLocationForm() {
+    this.navCtrl.navigateForward('/admin/location');
+  }
+
+  navigateToStateForm() {
+    this.navCtrl.navigateForward('/admin/state');
   }
 }

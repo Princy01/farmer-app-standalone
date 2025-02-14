@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { VehicleService } from '../../services/vehicle.service';
@@ -18,7 +18,7 @@ export class VehicleComponent {
   models = [{ id: 1, name: 'Corolla' }, { id: 2, name: 'Civic' }];
   engines = [{ id: 1, name: 'Petrol' }, { id: 2, name: 'Diesel' }];
 
-  constructor(private fb: FormBuilder, private el: ElementRef, private vehicleService: VehicleService) {
+  constructor(private fb: FormBuilder, private el: ElementRef, private vehicleService: VehicleService, private navCtrl: NavController) {
     this.vehicle = this.fb.group({
       vehicle_name: ['', [Validators.required, Validators.maxLength(255)]],
       vehicle_manufacture_year: ['', [Validators.required, Validators.pattern("^[0-9]{4}$")]],
@@ -45,7 +45,11 @@ export class VehicleComponent {
         next: data => {
           console.log('Data:', data);
           this.vehicle.reset();
-        },
+
+        this.navCtrl.navigateBack('/admin/driver', {
+          queryParams: { vehicle_id: data.vehicle_id }
+        });
+      },
         error: error => {
           console.error('Error:', error);
         }

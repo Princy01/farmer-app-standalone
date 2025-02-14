@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import {
   ApexChart,
   ApexXAxis,
@@ -39,6 +40,7 @@ export interface HeatmapOptions {
   imports: [NgApexchartsModule]
 })
 export class HeatmapComponent {
+  private toastController = inject(ToastController);
   chartOptions: HeatmapOptions;
 
   constructor() {
@@ -48,9 +50,9 @@ export class HeatmapComponent {
         height: 350,
         type: 'heatmap',
         events: {
-          dataPointSelection: (event, chartContext, config) => {
+          dataPointSelection: async (event, chartContext, config) => {
             const selectedData = config.w.config.series[config.seriesIndex].data[config.dataPointIndex];
-            alert(`Details:\nClass: ${selectedData.x}\nValue: ${selectedData.y}`);
+            this.showToast(`Class: ${selectedData.x}, Value: ${selectedData.y}`);
           }
         }
       },
@@ -96,5 +98,15 @@ export class HeatmapComponent {
 
   generateMatrixValue(row: number, col: number): number {
     return row === col ? 90 + Math.floor(Math.random() * 10) : Math.floor(Math.random() * 30);
+  }
+
+  async showToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      position: 'bottom',
+      color: 'warning'
+    });
+    await toast.present();
   }
 }

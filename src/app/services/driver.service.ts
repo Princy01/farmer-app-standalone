@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, take } from 'rxjs';
+import { Observable, of, throwError, take } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 // driver.model.ts
@@ -28,9 +28,21 @@ export interface Driver {
   providedIn: 'root'
 })
 export class DriverService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'http://127.0.0.1:3000';
 
   constructor(private http: HttpClient) { }
+
+   getDriver(): Observable<any[]> {
+      return of([
+        { vehicle_id: 1, category_name: 'Super Category 1' },
+        { vehicle_id: 2, category_name: 'Super Category 2' }
+      ]);
+    }
+
+      // code to get value from Backend
+    getVehicle(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.apiUrl}/vehicle`)
+    }
 
   createDriver(driver: Driver): Observable<any> { // Or Observable<Driver>
     return this.http.post(`${this.apiUrl}/driverDetails`, driver)

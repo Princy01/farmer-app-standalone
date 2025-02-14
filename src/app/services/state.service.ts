@@ -13,7 +13,7 @@ export interface State {
   providedIn: 'root'
 })
 export class StateService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'http://127.0.0.1:3000';
 
   constructor(private http: HttpClient) { }
 

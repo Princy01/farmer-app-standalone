@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Vehicle Form</ion-title>
+    <ion-title>VEHICLE</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -56,7 +56,7 @@
 
       <ion-item [class.invalid]="isFieldInvalid('vehicle_purchase_date')">
         <ion-label position="floating">Purchase Date</ion-label>
-        <ion-datetime formControlName="vehicle_purchase_date"></ion-datetime>
+        <ion-input type="datetime-local" formControlName="vehicle_purchase_date"></ion-input>
       </ion-item>
       <p class="error" *ngIf="isFieldInvalid('vehicle_purchase_date')">Purchase date is required.</p>
 
@@ -77,16 +77,3 @@
     </ion-button>
   </form>
 </ion-content>
-
-<style>
-  .error {
-    color: red;
-    font-size: 14px;
-    margin-left: 16px;
-  }
-
-  .invalid {
-    border: 1px solid red;
-    border-radius: 5px;
-  }
-</style>

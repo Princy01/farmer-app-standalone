@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 // category.model.ts
@@ -17,16 +17,28 @@ export interface Category {
   providedIn: 'root'
 })
 export class CategoryService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'http://127.0.0.1:3000';
 
   constructor(private http: HttpClient) { }
+
+  // getCategories(): Observable<any[]> {
+  //   return of([
+  //     { category_id: 1, category_name: 'Category 1', super_cat_id: 1, col1: 'Col 1', col2: 'Col 2', remarks: 'Remarks 1' },
+  //     { category_id: 2, category_name: 'Category 2', super_cat_id: 2, col1: 'Col 1', col2: 'Col 2', remarks: 'Remarks 2' }
+  //   ]);
+  // }
+
+  // code to get value from Backend
+  getSuperCategories(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/super-categories`)
+  }
 
   createCategory(category: Category): Observable<any> { // Or Observable<Category>
     return this.http.post(`${this.apiUrl}/categoryDetails`, category)
       .pipe(catchError(this.handleError));
   }
 
-  updateCategory(category: Category): Observable<any> { // Or Observable<Category>
+  updateCategory(category: Category): Observable<any> {
     return this.http.put(`${this.apiUrl}/categoryUpdate`, category)
       .pipe(catchError(this.handleError));
   }

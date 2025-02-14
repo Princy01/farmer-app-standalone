@@ -22,7 +22,7 @@ export interface Mandi {
   providedIn: 'root'
 })
 export class MandiService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'http://127.0.0.1:3000';
 
   constructor(private http: HttpClient) { }
 

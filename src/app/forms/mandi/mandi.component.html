@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Master Mandi Form</ion-title>
+    <ion-title>MANDI</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -46,12 +46,20 @@
       <ion-item [class.invalid]="isFieldInvalid('mandi_city')">
         <ion-label position="floating">Mandi City</ion-label>
         <ion-input type="number" formControlName="mandi_city"></ion-input>
+        <ion-button fill="solid" shape="round" color="dark" size="small" (click)="navigateToLocationForm()">
+          <ion-icon slot="start" name="list-outline"></ion-icon>
+          Select
+        </ion-button>
       </ion-item>
       <p class="error" *ngIf="isFieldInvalid('mandi_city')">City ID is required.</p>
 
       <ion-item [class.invalid]="isFieldInvalid('mandi_state')">
         <ion-label position="floating">Mandi State</ion-label>
         <ion-input type="number" formControlName="mandi_state"></ion-input>
+        <ion-button fill="solid" shape="round" color="dark" size="small" (click)="navigateToStateForm()">
+          <ion-icon slot="start" name="list-outline"></ion-icon>
+          Select
+        </ion-button>
       </ion-item>
       <p class="error" *ngIf="isFieldInvalid('mandi_state')">State ID is required.</p>
 
@@ -67,16 +75,3 @@
     </ion-button>
   </form>
 </ion-content>
-
-<style>
-  .error {
-    color: red;
-    font-size: 14px;
-    margin-left: 16px;
-  }
-
-  .invalid {
-    border: 1px solid red;
-    border-radius: 5px;
-  }
-</style>

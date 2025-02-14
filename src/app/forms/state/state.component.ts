@@ -1,6 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StateService } from '../../services/state.service';
@@ -15,7 +15,7 @@ import { StateService } from '../../services/state.service';
 export class StateComponent {
   state: FormGroup;
 
-  constructor(private fb: FormBuilder, private el: ElementRef, private masterStateService: StateService) {
+  constructor(private fb: FormBuilder, private el: ElementRef, private masterStateService: StateService, private navCtrl: NavController) {
     this.state = this.fb.group({
       state: ['', [Validators.required, Validators.maxLength(50)]],
     });
@@ -33,6 +33,10 @@ export class StateComponent {
         next: (data) => {
           console.log('Data:', data);
           this.state.reset();
+
+          this.navCtrl.navigateBack('/admin/mandi', {
+            queryParams: { mandi_state: data.mandi_state }
+          });
         },
         error: (error) => {
           console.error('Error:', error);

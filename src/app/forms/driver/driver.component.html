@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Driver Form</ion-title>
+    <ion-title>DRIVER</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -48,7 +48,7 @@
 
       <ion-item [class.invalid]="isFieldInvalid('date_of_joining')">
         <ion-label position="floating">Date of Joining</ion-label>
-        <ion-input type="date" formControlName="date_of_joining"></ion-input>
+        <ion-input type="date" placeholder=" " formControlName="date_of_joining"></ion-input>
       </ion-item>
       <p class="error" *ngIf="isFieldInvalid('date_of_joining')">Date of Joining is required.</p>
 
@@ -61,6 +61,10 @@
       <ion-item [class.invalid]="isFieldInvalid('vehicle_id')">
         <ion-label position="floating">Vehicle ID</ion-label>
         <ion-input type="text" formControlName="vehicle_id"></ion-input>
+        <ion-button fill="solid" shape="round" color="dark" size="small" (click)="navigateToVehicleForm()">
+          <ion-icon slot="start" name="list-outline"></ion-icon>
+          Select
+        </ion-button>
       </ion-item>
       <p class="error" *ngIf="isFieldInvalid('vehicle_id')">Vehicle ID is required.</p>
 
@@ -84,13 +88,17 @@
 
       <ion-item [class.invalid]="isFieldInvalid('d_o_b')">
         <ion-label position="floating">Date of Birth</ion-label>
-        <ion-input type="date" formControlName="d_o_b"></ion-input>
+        <ion-input type="date" formControlName="d_o_b"></ion-input>.
       </ion-item>
       <p class="error" *ngIf="isFieldInvalid('d_o_b')">Date of Birth is required.</p>
 
       <ion-item [class.invalid]="isFieldInvalid('violation')">
         <ion-label>Violation</ion-label>
         <ion-textarea formControlName="violation"></ion-textarea>
+        <ion-button fill="solid" shape="round" color="dark" size="small" (click)="navigateToViolationForm()">
+          <ion-icon slot="start" name="list-outline"></ion-icon>
+          Select
+        </ion-button>
       </ion-item>
       <p class="error" *ngIf="isFieldInvalid('violation')">Violation details are required.</p>
     </ion-list>
@@ -101,16 +109,3 @@
 
   </form>
 </ion-content>
-
-<style>
-  .error {
-    color: red;
-    font-size: 14px;
-    margin-left: 16px;
-  }
-
-  .invalid {
-    border: 1px solid red;
-    border-radius: 5px;
-  }
-</style>

@@ -1,9 +1,12 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { addIcons } from 'ionicons';
+import { listOutline } from 'ionicons/icons';
 import { DriverService } from '../../services/driver.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-driver',
@@ -15,7 +18,15 @@ import { DriverService } from '../../services/driver.service';
 export class DriverComponent {
   driver: FormGroup;
 
-  constructor(private fb: FormBuilder, private el: ElementRef, private driverService: DriverService) {
+  constructor(
+    private fb: FormBuilder,
+    private el: ElementRef,
+    private driverService: DriverService,
+    private navCtrl: NavController,
+    private route: ActivatedRoute
+  ) {
+    addIcons({ listOutline });
+
     this.driver = this.fb.group({
       driver_name: ['', [Validators.required, Validators.maxLength(255)]],
       driver_age: ['', [Validators.required, Validators.min(18), Validators.pattern("^[0-9]*$")]],
@@ -32,6 +43,13 @@ export class DriverComponent {
       d_o_b: ['', Validators.required],
       violation: ['', Validators.required]
     });
+
+    // Corrected subscription to query parameters
+    this.route.queryParams.subscribe(params => {
+      if (params['vehicle_id']) {
+        this.driver.patchValue({ vehicle_id: params['vehicle_id'] });
+      }
+    });
   }
 
   isFieldInvalid(field: string): boolean {
@@ -39,24 +57,29 @@ export class DriverComponent {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
-
   submitForm() {
     if (this.driver.valid) {
       console.log('Form Submitted:', this.driver.value);
-      this.driverService.createDriver(this.driver.value).subscribe(
-        {
-          next: data =>{
-            console.log('Data:', data);
-            this.driver.reset();
-          },
-          error: error => {
-            console.error('Error:', error);
-          }
+      this.driverService.createDriver(this.driver.value).subscribe({
+        next: (data) => {
+          console.log('Data:', data);
+          this.driver.reset();
+        },
+        error: (error) => {
+          console.error('Error:', error);
         }
-      )
+      });
     } else {
       const firstInvalid = this.el.nativeElement.querySelector('.invalid');
       if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  navigateToVehicleForm() {
+    this.navCtrl.navigateForward('/admin/vehicle');
+  }
+
+  navigateToViolationForm() {
+    this.navCtrl.navigateForward('/admin/violation');
   }
 }
