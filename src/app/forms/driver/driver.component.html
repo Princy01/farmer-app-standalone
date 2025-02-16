@@ -59,12 +59,12 @@
       <p class="error" *ngIf="isFieldInvalid('experience_years')">Experience must be a valid number (min 0).</p>
 
       <ion-item [class.invalid]="isFieldInvalid('vehicle_id')">
-        <ion-label position="floating">Vehicle ID</ion-label>
-        <ion-input type="text" formControlName="vehicle_id"></ion-input>
-        <ion-button fill="solid" shape="round" color="dark" size="small" (click)="navigateToVehicleForm()">
-          <ion-icon slot="start" name="list-outline"></ion-icon>
-          Select
-        </ion-button>
+        <ion-select label="Vehicle"  formControlName="vehicle_id">
+          <ion-select-option value="-1">--Select--</ion-select-option>
+          @for(veh_id of vehicle;track veh_id.vehicle_id){
+            <ion-select-option [value]="veh_id.vehicle_id">{{ veh_id.vehicle_name }}</ion-select-option>
+          }
+        </ion-select>
       </ion-item>
       <p class="error" *ngIf="isFieldInvalid('vehicle_id')">Vehicle ID is required.</p>
 
@@ -95,7 +95,7 @@
       <ion-item [class.invalid]="isFieldInvalid('violation')">
         <ion-label>Violation</ion-label>
         <ion-textarea formControlName="violation"></ion-textarea>
-        <ion-button fill="solid" shape="round" color="dark" size="small" (click)="navigateToViolationForm()">
+        <ion-button fill="solid" shape="round" color="dark" size="small">
           <ion-icon slot="start" name="list-outline"></ion-icon>
           Select
         </ion-button>
