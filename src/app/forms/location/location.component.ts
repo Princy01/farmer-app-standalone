@@ -35,9 +35,9 @@ export class LocationComponent {
             console.log('Data:', data);
             this.location.reset();
 
-            this.navCtrl.navigateBack('/admin/mandi', {
-              queryParams: { mandi_city: data.mandi_city }
-            });
+            // this.navCtrl.navigateBack('/admin/mandi', {
+            //   queryParams: { mandi_city: data.mandi_city }
+            // });
           },
           error: error => {
             console.error('Error:', error);

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -19,16 +19,29 @@ export class LoginPage {
   constructor(private fb: FormBuilder, private router: Router) {
     // Login Form
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      emailOrPhone: ['', [Validators.required, this.emailOrPhoneValidator]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
 
     // Register Form
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      emailOrPhone: ['', [Validators.required, this.emailOrPhoneValidator]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+  }
+
+  emailOrPhoneValidator(control: AbstractControl) {
+    const value = control.value;
+    if (!value) return { required: true };
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const phonePattern = /^[0-9]{10}$/;
+
+    if (emailPattern.test(value) || phonePattern.test(value)) {
+      return null; // Valid
+    }
+    return { invalidFormat: true }; // Invalid
   }
 
   // Handle Login
@@ -42,7 +55,7 @@ export class LoginPage {
     const userRole = email === 'admin@example.com' ? 'admin' : 'user';
 
     // Navigate based on role
-    this.router.navigate([userRole === 'admin' ? '/admin/category' : '/home']);
+    this.router.navigate([userRole === 'admin' ? '/admin/category' : '/admin']);
   }
 
   // Handle Registration

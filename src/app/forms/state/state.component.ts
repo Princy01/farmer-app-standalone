@@ -34,9 +34,9 @@ export class StateComponent {
           console.log('Data:', data);
           this.state.reset();
 
-          this.navCtrl.navigateBack('/admin/mandi', {
-            queryParams: { mandi_state: data.mandi_state }
-          });
+          // this.navCtrl.navigateBack('/admin/mandi', {
+          //   queryParams: { mandi_state: data.mandi_state }
+          // });
         },
         error: (error) => {
           console.error('Error:', error);

@@ -66,7 +66,7 @@ export class ProductComponent {
     }
   }
 
-  navigateToCategoryForm() {
-    this.navCtrl.navigateForward('/admin/category');
-  }
+  // navigateToCategoryForm() {
+  //   this.navCtrl.navigateForward('/admin/category');
+  // }
 }

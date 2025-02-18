@@ -9,13 +9,13 @@
     <ion-list>
       <ion-item [class.invalid]="isFieldInvalid('category_name')">
         <!-- <ion-label position="floating">Category Name</ion-label> -->
-        <ion-input label="Category Name" labelPlacement="floating" formControlName="category_name"></ion-input>
+        <ion-input label="Variety" labelPlacement="floating" formControlName="category_name"></ion-input>
       </ion-item>
       <p class="error" *ngIf="isFieldInvalid('category_name')">Category Name is required (max 255 characters).</p>
 
       <ion-item [class.invalid]="isFieldInvalid('super_cat_id')">
         <!-- <ion-label position="floating">Super Category</ion-label> -->
-        <ion-select label="Super Category"  formControlName="super_cat_id">
+        <ion-select label="Food Type"  formControlName="super_cat_id">
           <ion-select-option value="-1">--Select--</ion-select-option>
           @for(super_cat of superCategories;track super_cat.category_id){
           <ion-select-option [value]="super_cat.category_id">{{ super_cat.category_name }}</ion-select-option>
@@ -29,11 +29,15 @@
         <ion-textarea label="Remarks" labelPlacement="floating" formControlName="remarks"></ion-textarea>
       </ion-item>
 
-
-
-      <ion-button expand="full" type="submit" [disabled]="category.invalid">
+      <!-- <ion-button expand="full" type="submit" [disabled]="category.invalid">
         Submit
-      </ion-button>
+      </ion-button> -->
+
+      <div class="center-button">
+        <ion-button class="custom-button">
+          SUBMIT
+        </ion-button>
+        </div>
 
 
       <ion-list>
@@ -50,7 +54,7 @@
           </ion-list>
         </ion-item-group>
       </ion-list>
-      
+
     </ion-list>
   </form>
 </ion-content>

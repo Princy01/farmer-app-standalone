@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { addIcons } from 'ionicons';
-import { listOutline } from 'ionicons/icons';
 import { MandiService } from '../../services/mandi.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,8 +17,6 @@ export class MandiComponent {
   mandi: FormGroup;
 
   constructor(private fb: FormBuilder, private el: ElementRef, private mandiService: MandiService, private navCtrl: NavController, private route: ActivatedRoute) {
-
-    addIcons({ listOutline });
 
     this.mandi = this.fb.group({
       mandi_location: ['', [Validators.required, Validators.maxLength(255)]],
@@ -66,11 +62,11 @@ export class MandiComponent {
     }
   }
 
-  navigateToLocationForm() {
-    this.navCtrl.navigateForward('/admin/location');
-  }
+  // navigateToLocationForm() {
+  //   this.navCtrl.navigateForward('/admin/location');
+  // }
 
-  navigateToStateForm() {
-    this.navCtrl.navigateForward('/admin/state');
-  }
+  // navigateToStateForm() {
+  //   this.navCtrl.navigateForward('/admin/state');
+  // }
 }
