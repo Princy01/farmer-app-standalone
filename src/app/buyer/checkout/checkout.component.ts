@@ -42,4 +42,9 @@ export class CheckoutComponent {
     console.log('Modify Order Clicked');
     this.orderPlaced = false; // Allow modifying the order
   }
+
+  selectPayment(method: string) {
+    this.selectedPaymentMethod = method;
+  }
+
 }

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Wishlist</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,16 +7,18 @@
 <ion-content>
   <div *ngIf="wishlistItems.length > 0; else emptyWishlist" class="wishlist-grid">
     <ion-card *ngFor="let item of wishlistItems">
-      <img [src]="item.image" alt="{{ item.name }}" />
+      <img [src]="item.image" alt="{{ item.name }}" class="wishlist-img"/>
       <ion-card-header>
-        <ion-card-title>{{ item.name }} <span class="hindi-name">({{ item.hindiName }})</span></ion-card-title>
+        <ion-card-title class="item-title">
+          {{ item.name }} <span class="hindi-name">({{ item.hindiName }})</span>
+        </ion-card-title>
         <p class="price">₹{{ item.price }}</p>
       </ion-card-header>
       <ion-card-content>
-        <ion-button expand="block" color="primary" (click)="addToCart(item)">
+        <ion-button expand="block" fill="solid" color="success" (click)="addToCart(item)">
           <ion-icon name="cart"></ion-icon> Add to Cart
         </ion-button>
-        <ion-button expand="block" color="danger" (click)="removeFromWishlist(item)">
+        <ion-button expand="block" fill="outline" color="danger" (click)="removeFromWishlist(item)">
           <ion-icon name="trash"></ion-icon> Remove
         </ion-button>
       </ion-card-content>

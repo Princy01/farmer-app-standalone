@@ -18,6 +18,8 @@ export class CategoryPageComponent {
   @ViewChild('sortModal') sortModal!: IonModal;
   @ViewChild('productModal') productModal!: IonModal;
 
+  selectedSegment = 'nutrition'; // Default segment
+
   isSearchActive = false;
   searchQuery = '';
   categoryName: string = '';
@@ -39,22 +41,33 @@ export class CategoryPageComponent {
   filteredAndSortedItems: any[] = [];
 
  // Filters
- filterQuery: string = '';
+ selectedFilter: string | null = null; // Track selected filter section
 
+ filterQuery: string = '';
  priceRangeMin: number = 0;
  priceRangeMax: number = 150;
- priceRangeValues: { lower: number; upper: number } = { lower: 0, upper: 150 }; availability: boolean = false;
-
+ priceRangeValues: { lower: number; upper: number } = { lower: 0, upper: 150 };
+ availability: boolean = false;
  quantityDiscount: boolean = false;
  deliveryTime: string = 'any';
  organic: boolean | null = null;
  sellerRatings: number = 0;
-
  availablePaymentModes = ['Cash', 'UPI', 'Card'];
  paymentModeSelections: { [key: string]: boolean } = {}; // Tracks selected payment modes
  paymentMode: string[] = []; // Stores selected modes for filtering
+ minimumOrderQuantity: number = 0;
 
-  minimumOrderQuantity: number = 0;
+ // Available filter categories
+ filterCategories = [
+  { id: 'price', label: 'Price' },
+  { id: 'availability', label: 'Availability' },
+  { id: 'discount', label: 'Discount' },
+  { id: 'delivery', label: 'Delivery Time' },
+  { id: 'organic', label: 'Organic' },
+  { id: 'rating', label: 'Ratings' },
+  { id: 'payment', label: 'Payment Mode' },
+  { id: 'quantity', label: 'Min Order Quantity' }
+];
 
  sortOption: string = 'priceAsc';
  selectedProduct: any = null;
@@ -231,12 +244,6 @@ export class CategoryPageComponent {
     return items;
   }
 
-  applyFilters() {
-    this.filteredAndSortedItems = this.getFilteredAndSortedItems();
-console.log(this.filteredAndSortedItems);
-
-  }
-
   openFilterModal() {
     if (this.filterModal) {
       this.filterModal.present();
@@ -247,6 +254,25 @@ console.log(this.filteredAndSortedItems);
     if (this.filterModal) {
       this.filterModal.dismiss();
     }
+  }
+
+   // Select a filter category from the left panel
+   selectFilter(filterId: string) {
+    this.selectedFilter = filterId;
+  }
+
+  applyFilters() {
+    console.log('Filters applied:', {
+      priceRange: this.priceRangeValues,
+      availability: this.availability,
+      quantityDiscount: this.quantityDiscount,
+      deliveryTime: this.deliveryTime,
+      organic: this.organic,
+      sellerRatings: this.sellerRatings,
+      minimumOrderQuantity: this.minimumOrderQuantity,
+      paymentMode: this.paymentMode
+    });
+    this.filteredAndSortedItems = this.getFilteredAndSortedItems()
   }
   openSortModal() {
     if (this.sortModal) {

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import { addIcons } from 'ionicons';
+import { trashOutline, cartOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-cart',
@@ -21,6 +23,8 @@ export class CartComponent {
   discount = 0;
 
   constructor(private router: Router, private fb: FormBuilder) {
+    addIcons({trashOutline, cartOutline});
+    
     this.cartForm = this.fb.group({
       discountCode: [''],
       deliveryDate: ['']

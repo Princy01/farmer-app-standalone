@@ -24,27 +24,36 @@
   </ion-card>
 
   <!-- Payment Options -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Payment Options</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-radio-group [(ngModel)]="selectedPaymentMethod">
-        <ion-item>
-          <ion-radio slot="start" value="upi"></ion-radio>
-          <ion-label>UPI, Debit/Credit Card, Bank Transfer</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-radio slot="start" value="cod"></ion-radio>
-          <ion-label>Cash on Delivery (COD) - Available for trusted buyers</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-radio slot="start" value="emi"></ion-radio>
-          <ion-label>EMI for Bulk Orders - Pay in installments</ion-label>
-        </ion-item>
-      </ion-radio-group>
-    </ion-card-content>
-  </ion-card>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Payment Options</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-radio-group [(ngModel)]="selectedPaymentMethod">
+      <ion-item
+        [ngClass]="{'selected-option': selectedPaymentMethod === 'upi'}"
+        (click)="selectPayment('upi')">
+        <ion-radio slot="start" value="upi"></ion-radio>
+        <ion-label>UPI, Debit/Credit Card, Bank Transfer</ion-label>
+      </ion-item>
+
+      <ion-item
+        [ngClass]="{'selected-option': selectedPaymentMethod === 'credit'}"
+        (click)="selectPayment('credit')">
+        <ion-radio slot="start" value="credit"></ion-radio>
+        <ion-label>On Credit - Pay Later as per agreed terms</ion-label>
+      </ion-item>
+
+      <ion-item
+        [ngClass]="{'selected-option': selectedPaymentMethod === 'finance'}"
+        (click)="selectPayment('finance')">
+        <ion-radio slot="start" value="finance"></ion-radio>
+        <ion-label>Avail Finance - Partnered financial options available</ion-label>
+      </ion-item>
+    </ion-radio-group>
+  </ion-card-content>
+</ion-card>
+
 
   <!-- Order Confirmation (Shown only after order is placed) -->
   <ion-card *ngIf="orderPlaced">
