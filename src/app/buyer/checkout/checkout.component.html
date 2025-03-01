@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Checkout</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of cartItems">
+      <ion-thumbnail slot="start">
+        <img [src]="item.image" alt="{{ item.name }}" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ item.name }} <span class="hindi-name">({{ item.hindiName }})</span></h2>
+        <p>₹{{ item.price }} x {{ item.quantity }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-card>
+    <ion-card-content>
+      <h2>Total: ₹{{ totalPrice }}</h2>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Payment Options -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Payment Options</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-radio-group [(ngModel)]="selectedPaymentMethod">
+        <ion-item>
+          <ion-radio slot="start" value="upi"></ion-radio>
+          <ion-label>UPI, Debit/Credit Card, Bank Transfer</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-radio slot="start" value="cod"></ion-radio>
+          <ion-label>Cash on Delivery (COD) - Available for trusted buyers</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-radio slot="start" value="emi"></ion-radio>
+          <ion-label>EMI for Bulk Orders - Pay in installments</ion-label>
+        </ion-item>
+      </ion-radio-group>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Order Confirmation (Shown only after order is placed) -->
+  <ion-card *ngIf="orderPlaced">
+    <ion-card-header>
+      <ion-card-title>Order Confirmation</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Estimated Delivery:</strong> {{ estimatedDelivery }}</p>
+      <p><strong>Tracking Number:</strong> {{ trackingNumber }}</p>
+      <ion-button expand="full" color="danger" (click)="modifyOrder()">Modify Order</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color="success" expand="full" (click)="confirmOrder()" [disabled]="orderPlaced">
+        Confirm Order
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
