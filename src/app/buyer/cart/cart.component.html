@@ -32,9 +32,9 @@
 
           <!-- Quantity Section -->
 <ion-item lines="none" class="quantity-section">
-  <ion-button class="qty-btn" fill="outline" shape="full" (click)="decreaseQuantity(i)">-</ion-button>
+  <ion-button class="qty-btn" fill="outline" shape="round" (click)="decreaseQuantity(i)">-</ion-button>
   <p class="quantity-text">{{ item.quantity * 100 }}g</p>
-  <ion-button class="qty-btn" fill="outline" shape="full" (click)="increaseQuantity(i)">+</ion-button>
+  <ion-button class="qty-btn" fill="outline" shape="round" (click)="increaseQuantity(i)">+</ion-button>
 </ion-item>
 
 <!-- Trash Icon (Moved to top-right) -->

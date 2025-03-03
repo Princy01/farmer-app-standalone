@@ -82,12 +82,21 @@ ion-thumbnail {
 .product-price {
   font-size: 1rem;
   font-weight: bold;
-  color: #28a745;
+  color: rgb(101, 128, 105);
 }
 
 .product-quantity {
   font-size: 0.9rem;
   color: #666;
+}
+
+.product-actions{
+  font-size: 1.5rem;
+  font-weight: 100;
+  ion-icon {
+    padding: 0 5px; /* Adds horizontal padding */
+    color: rgb(101, 128, 105)
+  }
 }
 
 .full-height {
@@ -247,7 +256,7 @@ position: relative;
 span{
 position: absolute;
 right: .5rem;
-bottom: .5rem;
+bottom: 1rem;
 }
 }
 
@@ -259,10 +268,11 @@ bottom: .5rem;
 }
 
 .product-rating {
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: bold;
   text-align: center;
   margin-top: 2px;
+  color: rgb(76, 91, 66);
 }
 
 /* Product Details */

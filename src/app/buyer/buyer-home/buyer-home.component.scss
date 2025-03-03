@@ -8,8 +8,8 @@ ion-icon{
   color: rgb(154, 192, 159);
 }
 ion-title{
-  font-family: "Brush Script MT", cursive;
-  font-size: 43px;
+  font-family: var(--ion-font-family, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif);
+  font-size: 33px;
 }
 
 .hidden {
