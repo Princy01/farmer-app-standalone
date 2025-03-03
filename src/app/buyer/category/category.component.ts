@@ -286,8 +286,9 @@ export class CategoryPageComponent {
     }
   }
   applySort() {
-    this.filteredAndSortedItems;
+    this.filteredAndSortedItems = this.getFilteredAndSortedItems();
   }
+
   openProductModal(product: any) {
     this.selectedProduct = product;
     this.productModal?.present();

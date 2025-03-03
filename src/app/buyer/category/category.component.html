@@ -109,9 +109,11 @@
   </ion-toolbar>
 </ion-footer>
 
+
 <!-- Product Details Modal -->
 <ion-modal #productModal breakpoints="[0, 1]" initialBreakpoint="1" class="product-modal">
   <ng-template>
+
     <ion-header>
       <ion-toolbar>
         <ion-title>{{ selectedProduct?.name }} Details</ion-title>
@@ -120,17 +122,19 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-
     <ion-content>
+
       <ion-grid>
 
         <!-- Image and Rating -->
         <ion-row class="center-content">
           <ion-col size="12" class="image-container">
-            <img [src]="selectedProduct?.image" alt="{{ selectedProduct?.name }}" class="product-image" />
+            <div class="product-image-container">
+              <img [src]="selectedProduct?.image" alt="{{ selectedProduct?.name }}" class="product-image" />
+                        <span class="product-rating">⭐ {{ selectedProduct?.rating }}</span>
+            </div>
           </ion-col>
-          <ion-col size="12" class="product-rating">
-            ⭐ {{ selectedProduct?.rating }}
+          <ion-col size="12">
           </ion-col>
         </ion-row>
 
@@ -190,8 +194,9 @@
         </ion-row>
 
       </ion-grid>
-    </ion-content>
 
+
+    </ion-content>
     <!-- Footer: Wishlist & Add to Cart -->
     <ion-footer class="modal-footer">
       <ion-toolbar class="toolbar-container">
@@ -205,7 +210,9 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-footer>
+
   </ng-template>
+
 </ion-modal>
 
 <!-- Filter Modal -->
@@ -283,8 +290,7 @@
   </ng-template>
 </ion-modal>
 
-<!-- Sort Modal -->
-<ion-modal #sortModal breakpoints="[0, 0.7]" initialBreakpoint="0.7" class="sort-modal">
+<ion-modal #sortModal breakpoints="[0, 0.4]" initialBreakpoint="0.4" class="sort-modal">
   <ng-template>
     <ion-header>
       <ion-toolbar>
@@ -296,7 +302,7 @@
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-radio-group [(ngModel)]="sortOption">
+        <ion-radio-group [allowEmptySelection]="true" [(ngModel)]="sortOption" (ionChange)="applySort()">
           <ion-item lines="none" class="radio-item">
             <ion-label>Price - Low to High</ion-label>
             <ion-radio slot="end" value="price-asc"></ion-radio>
@@ -316,8 +322,5 @@
         </ion-radio-group>
       </ion-list>
     </ion-content>
-    <ion-footer>
-      <ion-button expand="full" (click)="applySort(); closeSortModal()">Apply</ion-button>
-    </ion-footer>
   </ng-template>
 </ion-modal>

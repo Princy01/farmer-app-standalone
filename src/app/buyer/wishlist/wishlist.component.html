@@ -1,29 +1,41 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Wishlist</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngIf="wishlistItems.length > 0; else emptyWishlist" class="wishlist-grid">
-    <ion-card *ngFor="let item of wishlistItems">
-      <img [src]="item.image" alt="{{ item.name }}" class="wishlist-img"/>
-      <ion-card-header>
-        <ion-card-title class="item-title">
-          {{ item.name }} <span class="hindi-name">({{ item.hindiName }})</span>
-        </ion-card-title>
-        <p class="price">₹{{ item.price }}</p>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-button expand="block" fill="solid" color="success" (click)="addToCart(item)">
-          <ion-icon name="cart"></ion-icon> Add to Cart
-        </ion-button>
-        <ion-button expand="block" fill="outline" color="danger" (click)="removeFromWishlist(item)">
-          <ion-icon name="trash"></ion-icon> Remove
-        </ion-button>
-      </ion-card-content>
-    </ion-card>
-  </div>
+  <ion-grid>
+    <ion-row *ngIf="wishlistItems.length > 0; else emptyWishlist">
+      <ion-col size="6" size-md="6" *ngFor="let item of wishlistItems">
+        <ion-card class="wishlist-card">
+          <ion-icon name="close-outline" class="close-icon" (click)="removeFromWishlist(item)"></ion-icon>
+
+          <img [src]="item.image" alt="{{ item.name }}" class="wishlist-img" />
+
+          <ion-card-header>
+            <ion-card-title class="item-title">
+              {{ item.name }} <span class="hindi-name">({{ item.hindiName }})</span>
+            </ion-card-title>
+            <p class="price">₹{{ item.price }}</p>
+          </ion-card-header>
+
+          <!-- Add to Cart Button at the Bottom -->
+          <ion-card-content class="cart-section">
+            <div class="cart-container" (click)="addToCart(item)">
+              <ion-icon name="cart" class="cart-icon"></ion-icon>
+              <span class="cart-text">Add to Cart</span>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <!-- Empty Wishlist Message -->
   <ng-template #emptyWishlist>

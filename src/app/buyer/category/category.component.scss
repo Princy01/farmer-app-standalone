@@ -204,6 +204,11 @@ max-width: 200px;
   margin-bottom: 10px;
   color: #888;
 }
+ion-modal ion-content{
+  --offset-top:unset !important;
+  --offset-bottom:unset !important;
+  overflow-y:auto !important;
+}
 
 //PRODUCT MODAL
 
@@ -237,6 +242,14 @@ ion-button {
   justify-content: center;
   padding: 10px 0;
 }
+.product-image-container{
+position: relative;
+span{
+position: absolute;
+right: .5rem;
+bottom: .5rem;
+}
+}
 
 .product-image {
   width: 180px;
@@ -246,7 +259,7 @@ ion-button {
 }
 
 .product-rating {
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   font-weight: bold;
   text-align: center;
   margin-top: 2px;

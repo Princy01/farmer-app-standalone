@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+import { addIcons } from 'ionicons';
+import { chevronBack, cart, closeOutline } from 'ionicons/icons';
 @Component({
   selector: 'app-wishlist',
   standalone: true,
@@ -15,38 +16,43 @@ export class WishlistComponent {
   cartItems: any[] = [];
 
   constructor(private router: Router, private toastController: ToastController) {
+    addIcons({ chevronBack, cart, closeOutline });
+
     const navData = this.router.getCurrentNavigation()?.extras.state;
     if (navData) {
       this.wishlistItems = navData['wishlistItems'] || [];
       this.cartItems = navData['cartItems'] || [];
     }
 
-    // ✅ Add sample products if wishlist is empty
+    // Add sample products if wishlist is empty
     if (this.wishlistItems.length === 0) {
       this.wishlistItems = [
         {
           id: 1,
-          name: 'Fresh Tomatoes',
-          hindiName: 'ताज़ा टमाटर',
+          name: 'Tomatoes',
+          hindiName: 'टमाटर',
           price: 50,
-          image: 'assets/images/tomatoes.jpg',
+          image: 'assets/img/Tomato1.png',
         },
         {
           id: 2,
-          name: 'Organic Potatoes',
-          hindiName: 'जैविक आलू',
+          name: 'Potatoes',
+          hindiName: 'आलू',
           price: 40,
-          image: 'assets/images/potatoes.jpg',
+          image: 'assets/img/Potato1.png',
         },
         {
           id: 3,
-          name: 'Green Peas',
-          hindiName: 'हरी मटर',
+          name: 'Onion',
+          hindiName: 'प्याज',
           price: 70,
-          image: 'assets/images/peas.jpg',
+          image: 'assets/img/Onion1.png',
         },
       ];
     }
+  }
+  goBack() {
+    this.router.navigate(['/buyer/buyer-home']);
   }
 
   async addToCart(item: any) {
